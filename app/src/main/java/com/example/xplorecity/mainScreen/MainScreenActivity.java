@@ -1,10 +1,12 @@
-package com.example.xplorecity;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.xplorecity.mainScreen;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.xplorecity.R;
+
+public class MainScreenActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
