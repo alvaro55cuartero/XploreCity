@@ -1,109 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorGray4"
-    android:orientation="vertical"
-    tools:context=".mainScreen.MainScreenActivity">
+    tools:context=".mainScreen.MainScreenActivity"
+    android:orientation="vertical">
 
-    <TextView
+    <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@color/colorGray1"
-        android:gravity="center"
-        android:text="@string/app_name"
-        android:textColor="@color/colorGrayA"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:visibility="visible"
-        android:padding="10dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            tools:visibility="visible">
+            android:text="@string/app_name"
+            android:textSize="30sp"
+            android:textColor="@color/colorGrayC"/>
 
+    </androidx.appcompat.widget.Toolbar>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/event1"
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                app:cardBackgroundColor="@color/colorGray2"
-                android:layout_marginBottom="10dp">
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tabLayout"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
+    </com.google.android.material.tabs.TabLayout>
 
-                <ImageView
-                    android:layout_width="117dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    app:srcCompat="@drawable/logo_carpa" />
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/pager">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+    </androidx.viewpager.widget.ViewPager>
 
-                </TextView>
-
-
-            </androidx.cardview.widget.CardView>
-
-            <Button
-                android:id="@+id/button1"
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_marginBottom="10dp"
-                android:background="@color/colorGray2"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_marginBottom="10dp"
-                android:background="@color/colorGray2"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_marginBottom="10dp"
-                android:background="@color/colorGray2"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/button4"
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_marginBottom="10dp"
-                android:background="@color/colorGray2"
-                android:text="Button" />
-            <Button
-                android:id="@+id/button5"
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_marginBottom="10dp"
-                android:background="@color/colorGray2"
-                android:text="Button" />
-            <Button
-                android:id="@+id/button6"
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_marginBottom="10dp"
-                android:background="@color/colorGray2"
-                android:text="Button" />
-        </LinearLayout>
-    </ScrollView>
 </LinearLayout>
