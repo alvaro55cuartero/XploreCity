@@ -22,6 +22,9 @@
         <activity android:name=".eventCarpa.EventCarpa">
 
         </activity>
+        <activity android:name=".eventCarpa.GameActivity">
+
+        </activity>
     </application>
 
 </manifest>

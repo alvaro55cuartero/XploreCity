@@ -4,14 +4,26 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.example.xplorecity.R;
+import com.example.xplorecity.eventManager.Event;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+
+import static com.example.xplorecity.mainScreen.MainScreenActivity.events;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,8 +65,6 @@ public class Tab1 extends Fragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
 
-
-
         return fragment;
     }
 
@@ -65,13 +75,21 @@ public class Tab1 extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View viewout = inflater.inflate(R.layout.fragment_tab1, container, false);
+        ListView listView = viewout.findViewById(R.id.list1);
+        listView.setAdapter(new ListAdapter(events));
+
+        listView.setOnItemClickListener(new ListListener(getActivity(), events));
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tab1, container, false);
+        return viewout;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

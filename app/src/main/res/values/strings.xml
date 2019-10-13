@@ -1,6 +1,78 @@
 <resources>
     <string name="app_name">XploreCity</string>
+    <string name="enter">Añadir a mi lista de eventos</string>
+    <string name="play">Jugar</string>
+    <string name="remove_from_my_list">Eliminar de mi lista</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="msn1">
+        De: t0x1c.
+        Hola.
+        Te llevamos observando mucho tiempo, casi tanto, como el tiempo que llevas aquí en la “uni”, siempre sentado en la misma silla de la biblioteca, esperando algo emocionante que vivir.
+        Ha llegado el gran momento de tu vida. Alguien va a morir. Tú puedes ser la persona que salvó de la muerte a un estudiante o el testigo de una bella muerte.
+        Esto es sencillo, juega con nosotros, y si ganas, no le pasará nada a nadie. Si no lo haces, morirá gente, incluso tú…
+        ¿Estas preparado? Te daremos una serie de pistas que te ayudarán a saber quién es la víctima y el lugar del crimen, si averiguas nuestro plan, todo estará bien y os dejaremos en paz.
+        Espera mi siguiente mensaje.
+    </string>
+    <string name="msn2">
+        De: t0x1c.
+        Hola.
+        Una de las cosas que más echamos de menos, de cuando éramos niños, es dibujar, y para recordar esos tiempos, hemos intentamo dibujar la escultura que esta en un edificio del campus. Te enviamos la imagen. ¿Sabrías qué edificio es? Si lo sabes, deberías ir allí.
+
+    </string>
+    <string name="msn3">
+        De: t0x1c.
+        ¡Qué curioso! la víctima suele vestir del color del fruto del madroño maduro. Recuérdalo, puede que te sirva en algún momento.
+        En una de las salas de impresoras de este edificio se encuentra una caja fuerte, intenta abrirla.
+
+    </string>
+    <string name="msn4">
+        De: t0x1c.
+        Hola.
+        Te llevamos observando mucho tiempo, casi tanto, como el tiempo que llevas aquí en la “uni”, siempre sentado en la misma silla de la biblioteca, esperando algo emocionante que vivir.
+        Ha llegado el gran momento de tu vida. Alguien va a morir. Tú puedes ser la persona que salvó de la muerte a un estudiante o el testigo de una bella muerte.
+        Esto es sencillo, juega con nosotros, y si ganas, no le pasará nada a nadie. Si no lo haces, morirá gente, incluso tú…
+        ¿Estas preparado? Te daremos una serie de pistas que te ayudarán a saber quién es la víctima y el lugar del crimen, si averiguas nuestro plan, todo estará bien y os dejaremos en paz.
+        Espera mi siguiente mensaje.
+    </string>
+    <string name="msn5">
+        De: t0x1c.
+        Hola.
+        Te llevamos observando mucho tiempo, casi tanto, como el tiempo que llevas aquí en la “uni”, siempre sentado en la misma silla de la biblioteca, esperando algo emocionante que vivir.
+        Ha llegado el gran momento de tu vida. Alguien va a morir. Tú puedes ser la persona que salvó de la muerte a un estudiante o el testigo de una bella muerte.
+        Esto es sencillo, juega con nosotros, y si ganas, no le pasará nada a nadie. Si no lo haces, morirá gente, incluso tú…
+        ¿Estas preparado? Te daremos una serie de pistas que te ayudarán a saber quién es la víctima y el lugar del crimen, si averiguas nuestro plan, todo estará bien y os dejaremos en paz.
+        Espera mi siguiente mensaje.
+    </string>
+    <string name="msn6">
+        De: t0x1c.
+        Hola.
+        Te llevamos observando mucho tiempo, casi tanto, como el tiempo que llevas aquí en la “uni”, siempre sentado en la misma silla de la biblioteca, esperando algo emocionante que vivir.
+        Ha llegado el gran momento de tu vida. Alguien va a morir. Tú puedes ser la persona que salvó de la muerte a un estudiante o el testigo de una bella muerte.
+        Esto es sencillo, juega con nosotros, y si ganas, no le pasará nada a nadie. Si no lo haces, morirá gente, incluso tú…
+        ¿Estas preparado? Te daremos una serie de pistas que te ayudarán a saber quién es la víctima y el lugar del crimen, si averiguas nuestro plan, todo estará bien y os dejaremos en paz.
+        Espera mi siguiente mensaje.
+    </string>
+    <string name="hint1">
+        ¿Cómo se llama el edificio?
+    </string>
+    <string name="hint2">
+        Escribe contraseña de 3 números
+    </string>
+    <string name="hint3">
+        ¿Cuál es el objeto?
+    </string>
+    <string name="hint4">
+        ¿Cómo se llama el edificio?
+    </string>
+    <string name="hint5">
+        ¿Cómo se llama el edificio?
+    </string>
+    <string name="hint6">
+        ¿Cómo se llama el edificio?
+    </string>
+    <string name="answer">respuesta</string>
+    <string name="continu">continuar</string>
 </resources>
