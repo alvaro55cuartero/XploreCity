@@ -6,12 +6,16 @@ public class Layout {
     private String texto;
     private String hint;
     private String respuesta;
+    private String botontext;
 
-    public Layout(int img, String texto, String hint, String respuesta) {
+
+
+    public Layout(int img, String texto, String hint, String respuesta, String botontext) {
         this.img = img;
         this.texto = texto;
         this.hint = hint;
         this.respuesta = respuesta;
+        this.botontext = botontext;
     }
 
     public int getImg() {
@@ -44,5 +48,13 @@ public class Layout {
 
     public void setRespuesta(String respuesta) {
         this.respuesta = respuesta;
+    }
+
+    public String getBotontext() {
+        return botontext;
+    }
+
+    public void setBotontext(String botontext) {
+        this.botontext = botontext;
     }
 }
