@@ -18,13 +18,13 @@
     </string>
     <string name="msn2">
         De: t0x1c.
-        \n\nUna de las cosas que más echamos de menos, de cuando éramos niños, es dibujar, y para recordar esos tiempos, hemos intentamo dibujar la escultura que esta en un edificio del campus. Te enviamos la imagen. \n¿Sabrías qué edificio es? Si lo sabes, deberías ir allí.
+        \n\nUna de las cosas que más echamos de menos, de cuando éramos niños, es dibujar, y para recordar esos tiempos, hemos intentado dibujar la escultura que esta en un edificio del campus. Te enviamos la imagen. \n¿Sabrías qué edificio es? Si lo sabes, deberías ir allí.
 
     </string>
     <string name="msn3">
         De: t0x1c.
         \n\n¡Qué curioso! la víctima suele vestir del color del fruto del madroño maduro. Recuérdalo, puede que te sirva en algún momento.
-        En una de las salas de impresoras de este edificio se encuentra una caja fuerte, intenta abrirla.
+        \nEn una de las salas de impresoras de este edificio hay una caja fuerte que te interesará encontrar. Para ayudar, memoriza esto:
 
     </string>
     <string name="msn4">
@@ -39,27 +39,30 @@
     </string>
     <string name="msn6">
         De: t0x1c.
-        \n\nYa has conseguido saber que el asesinato se llevará a cabo el día de la carpa y de qué color vestirá la víctima.
-        \n\nVolveremos a estar en contacto ese día si no quieres que muera nadie.
+        \n\nYa has conseguido saber que el asesinato se llevará a cabo el día de la carpa.
+        \n\nVolveremos a estar en contacto ese día, si no quieres que muera nadie.
 
     </string>
     <string name="hint1">
         ¿Cómo se llama el edificio?
     </string>
     <string name="hint2">
-        Escribe contraseña de 3 números
+        ¿Dónde buscar la caja fuerte?
     </string>
     <string name="hint3">
-        ¿Cuál es el objeto?
+        Es una clave de tres números.
     </string>
     <string name="hint4">
-        ¿Cómo se llama el edificio?
+        Has encontrado una nota.
     </string>
     <string name="hint5">
-        ¿Cómo se llama el edificio?
+        La nota te señala un objeto.\n¿Cuál es?
     </string>
     <string name="hint6">
-        ¿Cómo se llama el edificio?
+        Has cogido una tarjeta.¿Qué aula puede abrir?
+    </string>
+    <string name="hint7">
+        ¿Cúal puede ser la fecha?
     </string>
 
     <string name="botext1">Leer mensaje</string>
@@ -68,9 +71,9 @@
     <string name="botext4">Enviar respuesta</string>
     <string name="botext5">Ir a edificio</string>
     <string name="botext6">Ir a sala de impresoras</string>
-    <string name="botext7">Insertar código</string>
-    <string name="botext8">Ver objeto</string>
-    <string name="botext9">Ver Reloj</string>
+    <string name="botext7">Buscar la caja</string>
+    <string name="botext8">Abrir caja</string>
+    <string name="botext9">Ver la sala</string>
     <string name="botext10">Coger</string>
     <string name="botext11">Comprobar aula</string>
     <string name="botext12">Entrar en el aula</string>
@@ -78,7 +81,31 @@
     <string name="botext14">Esta es la fecha</string>
     <string name="botext15">Continuara...</string>
 
+    <string name="Impresora">
+        \n\n"No sabe escribir, y es una gran autora, con hoja sabe transmitir, y lo hace por ti a cualquier hora."
+    </string>
+    <string name="Esquina">
+        \n\n"Vive entre dos mundos que no pueden verse, y aunque no se dobla, le dobla la gente."
+    </string>
+    <string name="Mesa">
+        \n\n"Pino sobre pino, sobre pino, lino, sobre lino, flores, y alrededor profesores."
+    </string>
+    <string name="Silla">
+        \n\n"Aunque tiene cuatro patas y una espalda, no sabe ni mover ni correr. "
+    </string>
+    <string name="Mesilla">
+        \n\n"Adivíname ésa, con ruedas traviesas."
+    </string>
+    <string name="Estanteria">
+        \n\n"Soy tan grande como la cantidad de historias que me demandes."
+    </string>
+
     <string name="desimag">Imagen ilustrativa</string>
     <string name="answer">respuesta</string>
     <string name="continu">continuar</string>
+
+    <string name="fallo">Has fallado, piénsalo bien.</string>
+    <string name="correcto">Genial, sigue así.</string>
+
+
 </resources>
