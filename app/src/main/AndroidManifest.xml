@@ -11,20 +11,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".mainScreen.MainScreenActivity">
-
+        <activity android:name=".logIn.LogInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".eventCarpa.EventCarpa">
+        <activity android:name=".mainScreen.MainScreenActivity">
 
         </activity>
-        <activity android:name=".eventCarpa.GameActivity">
-
-        </activity>
+        <activity android:name=".eventCarpa.EventCarpa"></activity>
+        <activity android:name=".eventCarpa.GameActivity"></activity>
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
 </manifest>

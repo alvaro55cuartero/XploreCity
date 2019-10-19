@@ -106,6 +106,7 @@
 
     <string name="fallo">Has fallado, piénsalo bien.</string>
     <string name="correcto">Genial, sigue así.</string>
+    <string name="LogIn">Introduce tus datos</string>
 
 
 </resources>
