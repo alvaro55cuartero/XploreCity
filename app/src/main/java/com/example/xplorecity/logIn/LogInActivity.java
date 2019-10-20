@@ -42,8 +42,8 @@ public class LogInActivity extends AppCompatActivity {
 
         // temporal para poder probar mas cosas mientras esto no funciona
 
-        Intent intent = new Intent(this, MainScreenActivity.class);
-        this.startActivity(intent);
+        /*Intent intent = new Intent(this, MainScreenActivity.class);
+        this.startActivity(intent);*/
 
         //Lo primero que hacemos es coger el imei y hacer la petición porque
         //si ya tenemos el imei saltamos al MainActivity
@@ -63,10 +63,10 @@ public class LogInActivity extends AppCompatActivity {
         try {
             client.post(
                     this,
-                    "http://92.222.89.84/xplore/getLevel.php?imei=" + imei,
+                    "http://92.222.89.84/xplore/getLevel.php?",
                     new StringEntity(requestJson),
                     "application/json",
-                    new ImeiResponseHandler(gson, this)
+                    new ImeiResponseHandler(gson, this, this)
             );
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -76,21 +76,11 @@ public class LogInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
-        //Intent intent = new Intent(this, MainScreenActivity.class);
-        //startActivity(intent);
-
-        imei = "";
         email = "";
         nickName = "";
 
         emailText = findViewById(R.id.email);
         nickNameText = findViewById(R.id.nickName);
-
-        /*telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        if(isPermissionGranted()){
-            //do your specific task after read phone state
-            imei = telephonyManager.getImei();
-        }*/
 
         findViewById(R.id.botonAceptarLogIn).setOnClickListener(new AceptarButtonListener());
 
@@ -99,17 +89,46 @@ public class LogInActivity extends AppCompatActivity {
     private class AceptarButtonListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            if (emailText.getText() == null || nickNameText.getText() == null){
+            if (emailText.getText().toString().isEmpty() || nickNameText.getText().toString().isEmpty()){
                 Toast.makeText(getApplicationContext(), "Por favor, introduzca la información requerida", Toast.LENGTH_SHORT).show();
             } else {
 
                 nickName = nickNameText.getText().toString();
                 email = emailText.getText().toString();
 
-
+                addUser(email, nickName);
 
             }
         }
+    }
+
+    private void addUser(String email, String nickName) {
+
+        //Creamos el json
+        gson = new Gson();
+        AddUserRequest addUserRequest = new AddUserRequest(imei, email, nickName);
+        String requestJson = gson.toJson(addUserRequest);
+
+        //Mandamos la peticion
+        AsyncHttpClient client = new AsyncHttpClient();
+        try {
+            client.post(
+                    this,
+                    "http://92.222.89.84/xplore/addUser.php",
+                    new StringEntity(requestJson),
+                    "application/json",
+                    new AddUserResponseHandler(gson, this, this)
+            );
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    public void startMainActivity(){
+        Intent intent = new Intent(this, MainScreenActivity.class);
+        startActivity(intent);
     }
 
     public  boolean isPermissionGranted() {
