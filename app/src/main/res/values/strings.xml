@@ -43,27 +43,110 @@
         \n\nVolveremos a estar en contacto ese día, si no quieres que muera nadie.
 
     </string>
-    <string name="hint1">
-        ¿Cómo se llama el edificio?
+    <string name="msn7">
+        De: t0x1c.
+        \n\n¡Bienvenido a esta gran fiesta!
+        \n\nEstas entrando en la posible escena del crimen.
+        \n¡Qué nervios! Empecemos a jugar. Quiero que vayas a la zona del escenario, allí te daré muchas pistas para
+        \nencontrar a la víctima.
     </string>
-    <string name="hint2">
-        ¿Dónde buscar la caja fuerte?
+    
+    <string name="msn81">
+        De: t0x1c.
+        \n\nEn este instante la víctima se encuentra alrededor de ti, y el color de su pelo es tan oscuro que deja de ser color, y en
+        \nla ropa se usa para indicar dolor.
     </string>
-    <string name="hint3">
-        Es una clave de tres números.
+    <string name="msn82">
+        De: t0x1c.
+        \n\nEn este instante la víctima se encuentra alrededor de ti, y el color de su pelo es el más visto en los duelos, es un color
+        \nguardián de la noche, y promotor de los miedos.
     </string>
-    <string name="hint4">
-        Has encontrado una nota.
+    <string name="msn83">
+        De: t0x1c.
+        \n\nEn este instante la víctima se encuentra alrededor de ti, y el color de su pelo se puede ver en las fresas rosas y
+        \ncerezas.
     </string>
-    <string name="hint5">
-        La nota te señala un objeto.\n¿Cuál es?
+    <string name="msn91">
+        De: t0x1c.
+        \n\nAl color de sus ojos, ave se le llama a veces y llana es su condición.
     </string>
-    <string name="hint6">
-        Has cogido una tarjeta.¿Qué aula puede abrir?
+    <string name="msn92">
+        De: t0x1c.
+        \n\nEl color de sus ojos es par, y sus ojos son dos.
     </string>
-    <string name="hint7">
-        ¿Cúal puede ser la fecha?
+    <string name="msn93">
+        De: t0x1c.
+        \n\nEl color de sus ojos es primaveral y también el más natural.
     </string>
+    <string name="msn94">
+        De: t0x1c.
+        \n\nEl color de sus ojos está en el pavo real y en el mar.
+    </string>
+    <string name="msn95">
+        De: t0x1c.
+        \n\nEl color de sus ojos es como el de la masa salada, que va y viene en su danza y jamás descansa.
+    </string>
+    <string name="msn101">
+        De: t0x1c.
+        \n\nEl nombre de la víctima empieza por lo que tiene Adán delante y Eva detrás.
+    </string>
+    <string name="msn102">
+        De: t0x1c.
+        \n\nEl nombre de la víctima empieza por la letra que está en el sol y el río.
+    </string>
+    <string name="msn103">
+        De: t0x1c.
+        \n\nEl nombre de la víctima empieza por la letra que en dedos hay dos y en piernas y brazos no.
+    </string>
+    <string name="msn104">
+        De: t0x1c.
+    \n\nEl nombre de la víctima empieza por la letra que casi la lleva al principio, pancarta a la mitad y amanecer muy al
+    \nfinal.
+    </string>
+    <string name="msn105">
+        De: t0x1c.
+        \n\nEl nombre de la víctima empieza por la letra que lleva el desfile y el sonido del pinchazo, lleva tres palitos y empieza
+        \ncon el flechazo.
+    </string>
+    <string name="msn106">
+        De: t0x1c.
+        \n\nEl nombre de la víctima empieza por la letra que se dice una vez en un minuto y dos veces en un momento.
+    </string>
+    <string name="msn111">
+        De: Anónimo
+        \n\nEspero no haber llegado tarde, no me conoces, ni yo a ti, pero conozco a “toxic” y sé lo que está haciendo contigo.
+    </string>
+    <string name="msn121">
+        De: Anónimo
+        \n\n“Toxic” es un maniaco que lleva realizando esto mucho tiempo, y en sus juegos nunca pierde. Siempre acaba
+        \nmuriendo alguien envenenado porque los datos que te ofrece son demasiado generales entre tanta multitud.
+        \nSin embargo, en su patrón psicópata siempre busca que el nombre de sus víctimas acabe por la letra A.
+        \nEsto te tiene que servir de algo. ¡Empieza a buscar ya!
+    </string>
+    <string name="msn131">
+        De: t0x1c.
+        \n\nEsta partida termina aquí, pero el juego no.
+    </string>
+
+
+
+
+
+    <string name="hint1">¿Cómo se llama el edificio?</string>
+    <string name="hint2">¿Dónde buscar la caja fuerte?</string>
+    <string name="hint3">Es una clave de tres números.</string>
+    <string name="hint4">Has encontrado una nota.</string>
+    <string name="hint5">La nota te señala un objeto.\n¿Cuál es?</string>
+    <string name="hint6">Has cogido una tarjeta.¿Qué aula puede abrir?</string>
+    <string name="hint7">¿Cúal puede ser la fecha?</string>
+    <string name="hint8">Ha llegado el día.</string>
+    <string name="hint9">Estas en la zona del escenario.</string>
+    <string name="hint10">¿De qué color es su pelo?</string>
+    <string name="hint11">¿De qué color son sus ojos?</string>
+    <string name="hint12">¿Con qué letra empieza el nombre de la víctima?</string>
+    <string name="hint13">Mensaje de otra persona recibida.</string>
+    <string name="hint14">Recuerda los datos que sabes y localiza a la víctima.\n¿A quién debo buscar?</string>
+    <string name="hint15">¡LA HAS SALVADO!</string>
 
     <string name="botext1">Leer mensaje</string>
     <string name="botext2">Siguiente mensaje</string>
@@ -80,6 +163,18 @@
     <string name="botext13">Ver la pizarra</string>
     <string name="botext14">Esta es la fecha</string>
     <string name="botext15">Continuara...</string>
+    <string name="botxet16">Entrar en la carpa</string>
+    <string name="botxet17">Ir a la zona del escenario</string>
+    <string name="botxet18">Ver mensaje recibido</string>
+    <string name="botxet19">Siguiente pista de la victima</string>
+    <string name="botxet20">Leer el mensaje</string>
+    <string name="botxet21">Leer siguiente mensaje.</string>
+    <string name="botxet22">Buscar en todo el recinto</string>
+    <string name="botxet23">¡Esta es la victima!</string>
+    <string name="botxet24">Comunicar lo sucedido a todos</string>
+    <string name="botxet25">Apagar movil</string>
+
+
 
     <string name="Impresora">
         \n\n"No sabe escribir, y es una gran autora, con hoja sabe transmitir, y lo hace por ti a cualquier hora."

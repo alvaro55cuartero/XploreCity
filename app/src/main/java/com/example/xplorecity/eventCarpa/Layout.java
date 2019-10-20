@@ -3,14 +3,14 @@ package com.example.xplorecity.eventCarpa;
 public class Layout {
 
     private int[] img;
-    private String texto;
+    private String[] texto;
     private String hint;
     private String[] respuesta;
     private String botontext;
     private String [] opciones;
     private int id;
 
-    public Layout(int[] img, String texto, String hint, String[] respuesta, String botontext, String [] opciones) {
+    public Layout(int[] img, String[] texto, String hint, String[] respuesta, String botontext, String [] opciones) {
         this.img = img;
         this.texto = texto;
         this.hint = hint;
@@ -26,7 +26,13 @@ public class Layout {
     }
 
     public String getTexto() {
-        return texto;
+        if(texto != null) {
+            if (texto.length == 1) {
+                return texto[0];
+            }
+            return texto[id];
+        }
+        return null;
     }
 
     public String getHint() {

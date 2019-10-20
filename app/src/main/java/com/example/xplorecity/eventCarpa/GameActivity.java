@@ -57,28 +57,40 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         texResp2= new String[]{"Gafas", "Papelera", "Puerta", "Libro", "Maletín" ,"Calendario" ,"Calculadora" ,"Carta"};
         int tet2 = (int)Math.floor(Math.random()*texResp2.length);
 
+        Layout[] layouts = new Layout[28];
 
-        event = new Event(new Layout[]{
-                new Layout(new int[]{R.drawable.img11},null, null, null, getResources().getString(R.string.botext1), null),
-                new Layout(new int[]{0}, getResources().getString(R.string.msn1), null, null, getResources().getString(R.string.botext2), null),
-                new Layout(new int[]{0}, getResources().getString(R.string.msn2), null, null, getResources().getString(R.string.botext3), null),
-                new Layout(new int[]{R.drawable.img21}, null, getResources().getString(R.string.hint1), new String[]{"Los Madroños"}, getResources().getString(R.string.botext4), new String[]{"Los Tejos", "Los Acebos", "Los Magnolios", "Las Encinas", "Los Olivos", "Los Madroños", "Los pinos", "Aulario", "El Sario", "Administración", "Rectorado"}),
-                new Layout(new int[]{R.drawable.imgma1}, null, null, null, getResources().getString(R.string.botext5), null),
-                new Layout(new int[]{0}, getResources().getString(R.string.msn3)+texOption[tet], null, null, getResources().getString(R.string.botext6), null),
-                new Layout(new int[]{R.drawable.img3}, null, getResources().getString(R.string.hint2), new String[] {texResp[tet]}, getResources().getString(R.string.botext7), new String[]{"Silla","Libro","Folios","Cuaderno","Estanteria","Mesa","Portatil","Armario","Proyector","Esquina","Estanteria Pared","Mesilla","Techo","Impresora","Gafas","Agenda","Reloj","Archivador"}),
-                new Layout(new int[]{R.drawable.img31,R.drawable.img32,R.drawable.img33,R.drawable.img34,R.drawable.img35,
-                        R.drawable.img36,}, null, getResources().getString(R.string.hint3), new String[] {"683", "527","423","363","345","868"}, getResources().getString(R.string.botext8), new String[]{"Selecciona una respuesta...","868","232","363","210","527","361","683","567","423","047","321","393","345"}),
-                new Layout(new int[]{texOption2[tet2]}, null, getResources().getString(R.string.hint4), null, getResources().getString(R.string.botext9), null),
-                new Layout(new int[]{R.drawable.img51}, null, getResources().getString(R.string.hint5), new String[]{texResp2[tet2]}, getResources().getString(R.string.botext10), new String[]{"Selecciona una respuesta...","Gafas", "Papelera", "Puerta", "Libro", "Maletín" ,"Calendario" ,"Calculadora" ,"Carta"}),
-                new Layout(new int[]{R.drawable.img61,R.drawable.img62,R.drawable.img63,R.drawable.img64,
-                        R.drawable.img65,R.drawable.img66}, null, getResources().getString(R.string.hint6), new String[]{"201", "203", "204", "205", "207", "217"}, getResources().getString(R.string.botext11), new String[]{"Selecciona una respuesta...","203","214","210","204","206","809","211","201","212","205","808","110","103","217"}),
-                new Layout(new int[]{R.drawable.imgma1}, null, null, null, getResources().getString(R.string.botext12), null),
-                new Layout(new int[]{0}, getResources().getString(R.string.msn5), null, null, getResources().getString(R.string.botext13), null),
-                new Layout(new int[]{R.drawable.img71,R.drawable.img72,R.drawable.img73}, null, getResources().getString(R.string.hint7), new String[] {"25/10/19"}, getResources().getString(R.string.botext14), new String[]{"Selecciona una respuesta...","24/10/19","26/10/19","28/10/19","27/10/19","25/10/19","29/10/19","21/10/19","25/10/19","23/10/19","22/10/19","30/10/19"}),
-                new Layout(new int[]{0},getResources().getString(R.string.msn6),null,null,getResources().getString(R.string.botext15),null)
-        });
 
-        checkDate("25/10/2019");
+        layouts[0] = new Layout(new int[]{R.drawable.img11},null, null, null, getResources().getString(R.string.botext1), null);
+        layouts[1] = new Layout(new int[]{0}, new String[]{getResources().getString(R.string.msn1)}, null, null, getResources().getString(R.string.botext2), null);
+        layouts[2] = new Layout(new int[]{0}, new String[]{getResources().getString(R.string.msn2)}, null, null, getResources().getString(R.string.botext3), null);
+        layouts[3] = new Layout(new int[]{R.drawable.img21}, null, getResources().getString(R.string.hint1), new String[]{"Los Madroños"}, getResources().getString(R.string.botext4), new String[]{"Los Tejos", "Los Acebos", "Los Magnolios", "Las Encinas", "Los Olivos", "Los Madroños", "Los pinos", "Aulario", "El Sario", "Administración", "Rectorado"});
+        layouts[4] = new Layout(new int[]{R.drawable.imgma1}, null, null, null, getResources().getString(R.string.botext5), null);
+        layouts[5] = new Layout(new int[]{0}, new String[]{getResources().getString(R.string.msn3)+texOption[tet]}, null, null, getResources().getString(R.string.botext6), null);
+        layouts[6] = new Layout(new int[]{R.drawable.img3}, null, getResources().getString(R.string.hint2), new String[] {texResp[tet]}, getResources().getString(R.string.botext7), new String[]{"Silla","Libro","Folios","Cuaderno","Estanteria","Mesa","Portatil","Armario","Proyector","Esquina","Estanteria Pared","Mesilla","Techo","Impresora","Gafas","Agenda","Reloj","Archivador"});
+        layouts[7] = new Layout(new int[]{R.drawable.img31,R.drawable.img32,R.drawable.img33,R.drawable.img34,R.drawable.img35, R.drawable.img36,}, null, getResources().getString(R.string.hint3), new String[] {"683", "527","423","363","345","868"}, getResources().getString(R.string.botext8), new String[]{"Selecciona una respuesta...","868","232","363","210","527","361","683","567","423","047","321","393","345"});
+        layouts[8] = new Layout(new int[]{texOption2[tet2]}, null, getResources().getString(R.string.hint4), null, getResources().getString(R.string.botext9), null);
+        layouts[9] = new Layout(new int[]{R.drawable.img51}, null, getResources().getString(R.string.hint5), new String[]{texResp2[tet2]}, getResources().getString(R.string.botext10), new String[]{"Selecciona una respuesta...","Gafas", "Papelera", "Puerta", "Libro", "Maletín" ,"Calendario" ,"Calculadora" ,"Carta"});
+        layouts[10] = new Layout(new int[]{R.drawable.img61,R.drawable.img62,R.drawable.img63,R.drawable.img64, R.drawable.img65,R.drawable.img66}, null, getResources().getString(R.string.hint6), new String[]{"201", "203", "204", "205", "207", "217"}, getResources().getString(R.string.botext11), new String[]{"Selecciona una respuesta...","203","214","210","204","206","809","207","211","201","212","205","808","110","103","217"});
+        layouts[11] = new Layout(new int[]{R.drawable.imgma1}, null, null, null, getResources().getString(R.string.botext12), null);
+        layouts[12] = new Layout(new int[]{0}, new String[]{getResources().getString(R.string.msn5)}, null, null, getResources().getString(R.string.botext13), null);
+        layouts[13] = new Layout(new int[]{R.drawable.img71,R.drawable.img72,R.drawable.img73}, null, getResources().getString(R.string.hint7), new String[] {"25/10/19","25/10/19","25/10/19"}, getResources().getString(R.string.botext14), new String[]{"Selecciona una respuesta...","24/10/19","26/10/19","28/10/19","27/10/19","25/10/19","29/10/19","21/10/19","25/10/19","23/10/19","22/10/19","30/10/19"});
+        layouts[14] = new Layout(new int[]{0},new String[]{getResources().getString(R.string.msn6)},null,null,getResources().getString(R.string.botext15),null);
+        layouts[15] = new Layout(new int[]{R.drawable.img81}, null, getResources().getString(R.string.hint8),null,getResources().getString(R.string.botxet16), null);
+        layouts[16] = new Layout(new int[]{0},new String[]{getResources().getString(R.string.msn7)}, null,null,getResources().getString(R.string.botxet17),null);
+        layouts[17] = new Layout(new int[]{R.drawable.carpa},null, getResources().getString(R.string.hint9),null,getResources().getString(R.string.botxet18),null);
+        layouts[18] = new Layout(new int[]{0},new String[]{getResources().getString(R.string.msn81),getResources().getString(R.string.msn82),getResources().getString(R.string.msn83)},getResources().getString(R.string.hint10),new String[]{"Negro", "Negro", "Rojo"},getResources().getString(R.string.botxet19),new String[]{"Blanco", "Violeta", "Azul", "Rosa", "Rubio", "Avellana", "Café", "Castaño", "Negro", "Verde", "Rojo"});
+        layouts[19] = new Layout(new int[]{0},new String[]{getResources().getString(R.string.msn91),getResources().getString(R.string.msn92),getResources().getString(R.string.msn93),getResources().getString(R.string.msn94),getResources().getString(R.string.msn95)},getResources().getString(R.string.hint11),new String[]{"Avellana","Pardos", "Verde", "Azul", "Azul"},getResources().getString(R.string.botxet19),new String[]{"Blanco","Violeta", "Azul", "Pardos", "Rosa", "Rubio", "Avellana", "Café", "Castaño", "Negro", "Verde", "Rojo"});
+        layouts[20] = new Layout(new int[]{0},new String[]{getResources().getString(R.string.msn101),getResources().getString(R.string.msn102),getResources().getString(R.string.msn103),getResources().getString(R.string.msn104),getResources().getString(R.string.msn105),getResources().getString(R.string.msn106)},getResources().getString(R.string.hint12),new String[]{"A","O","D","C","F","M"},getResources().getString(R.string.botxet19),new String[]{"I","U","O","C","A","M","B","J","Z","S","P","D","N","F","L","E"});
+        layouts[21] = new Layout(new int[]{R.drawable.img91},null,getResources().getString(R.string.hint13),null,getResources().getString(R.string.botxet20),null);
+        layouts[22] = new Layout(new int[]{0},new String[]{getResources().getString(R.string.msn111)},null,null,getResources().getString(R.string.botxet21),null);
+        layouts[23] = new Layout(new int[]{0},new String[]{getResources().getString(R.string.msn121)},null,null,getResources().getString(R.string.botxet22),null);
+        layouts[24] = new Layout(new int[]{R.drawable.img101},null,getResources().getString(R.string.hint14),new String[]{"Persona de pelo " + layouts[18].getRespuesta()+", ojos " + layouts[19].getRespuesta() +", y de nombre " + checkName(layouts[20].getRespuesta())+"."},getResources().getString(R.string.botxet23),new String[]{"Persona de pelo negro, ojos Avellana,\ny de nombre Ana.","Persona de pelo negro, ojos Avellana,\ny de nombre Ofelia.","Persona de pelo negro, ojos Avellana,\ny de nombre Diana.","Persona de pelo negro, ojos Avellana,\ny de nombre Carla.","Persona de pelo negro, ojos Avellana,\ny de nombre Fabiola.","Persona de pelo negro, ojos Avellana,\ny de nombre Marta.","Persona de pelo negro, ojos Pardos,\ny de nombre Ana.","Persona de pelo negro, ojos Pardos,\ny de nombre Ofelia.","Persona de pelo negro, ojos Pardos,\ny de nombre Diana.","Persona de pelo negro, ojos Pardos,\ny de nombre Carla.","Persona de pelo negro, ojos Pardos,\ny de nombre Fabiola.","Persona de pelo negro, ojos Pardos,\ny de nombre Marta.","Persona de pelo negro, ojos Verde,\ny de nombre Ana.","Persona de pelo negro, ojos Verde,\ny de nombre Ofelia.","Persona de pelo negro, ojos Verde,\ny de nombre Diana.","Persona de pelo negro, ojos Verde,\ny de nombre Carla.","Persona de pelo negro, ojos Verde,\ny de nombre Fabiola.","Persona de pelo negro, ojos Verde,\ny de nombre Marta.","Persona de pelo negro, ojos Azul,\ny de nombre Ana.","Persona de pelo negro, ojos Azul,\ny de nombre Ofelia.","Persona de pelo negro, ojos Azul,\ny de nombre Diana.","Persona de pelo negro, ojos Azul,\ny de nombre Carla.","Persona de pelo negro, ojos Azul,\ny de nombre Fabiola.","Persona de pelo negro, ojos Azul,\ny de nombre Marta.","Persona de pelo rojo, ojos Avellana,\ny de nombre Ana.","Persona de pelo rojo, ojos Avellana,\ny de nombre Ofelia.","Persona de pelo rojo, ojos Avellana,\ny de nombre Diana.","Persona de pelo rojo, ojos Avellana,\ny de nombre Carla.","Persona de pelo rojo, ojos Avellana,\ny de nombre Fabiola.","Persona de pelo rojo, ojos Avellana,\ny de nombre Marta.","Persona de pelo rojo, ojos Pardos,\ny de nombre Ana.","Persona de pelo rojo, ojos Pardos,\ny de nombre Ofelia.","Persona de pelo rojo, ojos Pardos,\ny de nombre Diana.","Persona de pelo rojo, ojos Pardos,\ny de nombre Carla.","Persona de pelo rojo, ojos Pardos,\ny de nombre Fabiola.","Persona de pelo rojo, ojos Pardos,\ny de nombre Marta.","Persona de pelo rojo, ojos Verde,\ny de nombre Ana.","Persona de pelo rojo, ojos Verde,\ny de nombre Ofelia.","Persona de pelo rojo, ojos Verde,\ny de nombre Diana.","Persona de pelo rojo, ojos Verde,\ny de nombre Carla.","Persona de pelo rojo, ojos Verde,\ny de nombre Fabiola.","Persona de pelo rojo, ojos Verde,\ny de nombre Marta.","Persona de pelo rojo, ojos Azul,\ny de nombre Ana.","Persona de pelo rojo, ojos Azul,\ny de nombre Ofelia.","Persona de pelo rojo, ojos Azul,\ny de nombre Diana.","Persona de pelo rojo, ojos Azul,\ny de nombre Carla.","Persona de pelo rojo, ojos Azul,\ny de nombre Fabiola.","Persona de pelo rojo, ojos Azul,\ny de nombre Marta."});
+        layouts[26] = new Layout(new int[]{R.drawable.img111},null,getResources().getString(R.string.hint15),null,getResources().getString(R.string.botxet24),null);
+        layouts[27] = new Layout(new int[]{0},new String[]{getResources().getString(R.string.msn131)},null,null,getResources().getString(R.string.botxet25),null);
+
+        event = new Event(layouts);
+
+
 
 
         b = findViewById(R.id.button);
@@ -88,14 +100,34 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         makeLayout(event.layouts[currentLayout]);
 
-    };
+    }
 
     public boolean checkDate(String date) {
         String[] datevalue = date.split("/");
         Date currentTime = Calendar.getInstance().getTime();
-        return currentTime.after(new Date(Integer.parseInt(datevalue[2]),Integer.parseInt(datevalue[1]), Integer.parseInt(datevalue[0])));
+        boolean b = currentTime.before(new Date(Integer.parseInt(datevalue[2]),Integer.parseInt(datevalue[1]), Integer.parseInt(datevalue[0])));
+
+        return b;
     }
 
+    public String checkName(String letra) {
+        switch (letra){
+            case "A":
+                return "Ana";
+                case "O":
+                    return "Ofelia";
+                    case "D":
+                        return "Diana";
+                    case "C":
+                        return "Carla";
+                    case "F":
+                        return "Fabiola";
+                    case "M":
+                        return "Marta";
+                        default:
+                            return null;
+        }
+    }
 
 
     public void makeLayout(Layout layout) {
@@ -169,8 +201,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     public void todoBien(){
         scrollView.scrollTo(0,0);
-        if(currentLayout < event.layouts.length ) {
-            if(true) {
+        if(currentLayout < event.layouts.length -1 ) {
+            if(currentLayout < 14 || checkDate("20/10/2019")) {
                 currentLayout++;
                 makeLayout(event.layouts[currentLayout]);
             }
