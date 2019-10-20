@@ -40,6 +40,11 @@ public class LogInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        // temporal para poder probar mas cosas mientras esto no funciona
+
+        Intent intent = new Intent(this, MainScreenActivity.class);
+        this.startActivity(intent);
+
         //Lo primero que hacemos es coger el imei y hacer la petición porque
         //si ya tenemos el imei saltamos al MainActivity
         telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
