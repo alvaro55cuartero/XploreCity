@@ -1,5 +1,6 @@
 package com.example.xplorecity.eventCarpa;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -206,6 +207,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 currentLayout++;
                 makeLayout(event.layouts[currentLayout]);
             }
+        } else {
+            this.finish();
         }
     }
 }
