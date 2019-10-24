@@ -144,7 +144,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
-        makeLayout(event.layouts[currentLayout]);
 
     }
 
@@ -176,7 +175,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    public void makeLayout(Layout layout) {
+    public void makeLayout(int i) {
+        Layout layout = event.layouts[i];
         img = findViewById(R.id.image);
         text = findViewById(R.id.text);
         hint = findViewById(R.id.hint);
@@ -250,7 +250,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         if(currentLayout < event.layouts.length -1 ) {
             if(currentLayout < 14 || checkDate("20/10/2019")) {
                 currentLayout++;
-                makeLayout(event.layouts[currentLayout]);
+                makeLayout(currentLayout);
 
                 //Le decimos al servidor que hemos avanzado un Layout
                 gson = new Gson();

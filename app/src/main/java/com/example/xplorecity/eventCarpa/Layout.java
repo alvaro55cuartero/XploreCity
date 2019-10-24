@@ -24,7 +24,10 @@ public class Layout {
 
 
     public int getImg() {
-        return img[id];
+        if(img.length != 1) {
+            return img[id];
+        }
+        return img[0];
     }
 
     public String getTexto() {

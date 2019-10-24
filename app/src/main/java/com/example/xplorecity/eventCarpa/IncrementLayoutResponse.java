@@ -3,14 +3,14 @@ package com.example.xplorecity.eventCarpa;
 class IncrementLayoutResponse {
 
     private String err;
-    private int msg;
+    private String msg;
 
-    public IncrementLayoutResponse(String err, int msg){
+    public IncrementLayoutResponse(String err, String msg){
         this.err = err;
         this.msg = msg;
     }
 
-    public int getMsg(){
+    public String getMsg(){
         return msg;
     }
 

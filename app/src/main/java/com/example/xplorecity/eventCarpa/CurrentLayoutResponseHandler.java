@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.example.xplorecity.logIn.ErrorResponse;
+import com.example.xplorecity.mainScreen.MainScreenActivity;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -30,7 +31,7 @@ class CurrentLayoutResponseHandler extends AsyncHttpResponseHandler {
             String result = gson.toJson(currentLayoutResponse);
             Toast.makeText(this.context, result, Toast.LENGTH_LONG).show();
 
-            gameActivity.setCurrentLayout(currentLayoutResponse.getMsg());
+            gameActivity.makeLayout(currentLayoutResponse.getMsg());
 
         }
     }

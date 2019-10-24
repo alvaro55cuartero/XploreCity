@@ -14,7 +14,7 @@ import static com.example.xplorecity.mainScreen.MainScreenActivity.myEvents;
 
 public class EventCarpa extends AppCompatActivity implements View.OnClickListener {
 
-    private int id;
+    private int id = 0;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,15 +26,11 @@ public class EventCarpa extends AppCompatActivity implements View.OnClickListene
         Button b2 = findViewById(R.id.button2);
         b2.setOnClickListener(new PlayButtonListener(this));
         Bundle bundle = getIntent().getExtras();
-        try {
-            this.id = bundle.getInt("id");
-        } catch (Exception e){
-            System.err.println(e.toString());
-        }
-        if(events.get(this.id).isInMyEvents()) {
-            b1.setText(R.string.remove_from_my_list);
-            b2.setVisibility(View.VISIBLE);
-        }
+
+        //if(events.get(0).isInMyEvents()) {
+        //    b1.setText(R.string.remove_from_my_list);
+        //    b2.setVisibility(View.VISIBLE);
+        //}
 
     }
 
