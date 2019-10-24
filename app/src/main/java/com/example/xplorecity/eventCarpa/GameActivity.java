@@ -1,6 +1,5 @@
 package com.example.xplorecity.eventCarpa;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -182,7 +181,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     public void comprobaciones(){
 
-        if(currentLayout==3 || currentLayout==6 ||currentLayout==7 ||currentLayout==9 ||currentLayout==10 ||currentLayout==13){
+        if(currentLayout==3 || currentLayout==6 ||currentLayout==7 ||currentLayout==9 ||currentLayout==10 ||currentLayout==13 || currentLayout ==18|| currentLayout == 19 || currentLayout == 20 || currentLayout ==24 ){
             seleccion = spinner.getSelectedItem().toString();
             //Toast.makeText(this,seleccion, Toast.LENGTH_SHORT).show();
             //Toast.makeText(this,layouts[currentLayout].getRespuesta(), Toast.LENGTH_SHORT).show();

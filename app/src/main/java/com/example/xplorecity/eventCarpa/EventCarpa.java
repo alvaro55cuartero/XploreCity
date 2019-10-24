@@ -25,13 +25,17 @@ public class EventCarpa extends AppCompatActivity implements View.OnClickListene
         b1.setOnClickListener(this);
         Button b2 = findViewById(R.id.button2);
         b2.setOnClickListener(new PlayButtonListener(this));
-
-        if(events.get(id).isInMyEvents()) {
+        Bundle bundle = getIntent().getExtras();
+        try {
+            this.id = bundle.getInt("id");
+        } catch (Exception e){
+            System.err.println(e.toString());
+        }
+        if(events.get(this.id).isInMyEvents()) {
             b1.setText(R.string.remove_from_my_list);
             b2.setVisibility(View.VISIBLE);
         }
-        Bundle bundle = getIntent().getExtras();
-        id = bundle.getInt("id");
+
     }
 
     @Override

@@ -17,7 +17,9 @@ public class Layout {
         this.respuesta = respuesta;
         this.botontext = botontext;
         this.opciones = opciones;
-        id = (int)(Math.random() * respuesta.length);
+        if(respuesta != null) {
+            this.id = (int) (Math.random() * respuesta.length);
+        }
     }
 
 
