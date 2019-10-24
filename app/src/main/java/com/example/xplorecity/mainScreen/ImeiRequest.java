@@ -1,4 +1,4 @@
-package com.example.xplorecity.logIn;
+package com.example.xplorecity.mainScreen;
 
 class ImeiRequest {
 
@@ -6,5 +6,9 @@ class ImeiRequest {
 
     public ImeiRequest(String imei) {
         this.imei = imei;
+    }
+
+    public String getImei(){
+        return imei;
     }
 }

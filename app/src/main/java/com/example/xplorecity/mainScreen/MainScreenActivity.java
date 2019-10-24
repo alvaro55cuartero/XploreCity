@@ -21,9 +21,15 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.xplorecity.R;
 import com.example.xplorecity.eventCarpa.EventCarpa;
 import com.example.xplorecity.eventManager.Event;
+import com.example.xplorecity.logIn.LogInActivity;
 import com.google.android.material.tabs.TabLayout;
+import com.google.gson.Gson;
+import com.loopj.android.http.AsyncHttpClient;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+
+import cz.msebera.android.httpclient.entity.StringEntity;
 
 
 public class MainScreenActivity extends AppCompatActivity implements View.OnClickListener, Tab1.OnFragmentInteractionListener, Tab2.OnFragmentInteractionListener {
@@ -33,8 +39,42 @@ public class MainScreenActivity extends AppCompatActivity implements View.OnClic
     public static ArrayList<Event> events = new ArrayList<Event>();
     public static ArrayList<Event> myEvents = new ArrayList<Event>();
 
+    private String imei;
+    private TelephonyManager telephonyManager;
+    private Gson gson;
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @SuppressLint("MissingPermission")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        if(isPermissionGranted()){
+            //do your specific task after read phone state
+            imei = telephonyManager.getImei();
+        }
+
+        //Creamos el json
+        gson = new Gson();
+        ImeiRequest imeiRequest = new ImeiRequest(imei);
+        String requestJson = gson.toJson(imeiRequest);
+
+        //Mandamos la peticion
+        AsyncHttpClient client = new AsyncHttpClient();
+        try {
+            client.post(
+                    this,
+                    "http://92.222.89.84/xplore/getLevel.php",
+                    new StringEntity(requestJson),
+                    "application/json",
+                    new ImeiResponseHandler(gson, this, this)
+            );
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //En la primera version solo añadimos un evento si la lista está vacía para
@@ -80,6 +120,52 @@ public class MainScreenActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    public  boolean isPermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(android.Manifest.permission.READ_PHONE_STATE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                return true;
+            } else {
+
+                Log.v("TAG","Permission is revoked");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, 2);
+                return false;
+            }
+        }
+        else { //permission is automatically granted on sdk<23 upon installation
+            return true;
+        }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+
+            case 2: {
+
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(getApplicationContext(), "Permission granted", Toast.LENGTH_SHORT).show();
+                    //do your specific task after read phone state granted
+                } else {
+                    Toast.makeText(getApplicationContext(), "Permission denied", Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
+    }
+
+    public void startLogInActivity() {
+        finish();
+        Intent i = new Intent(this, LogInActivity.class);
+        startActivity(i);
     }
 
 }

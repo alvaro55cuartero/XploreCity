@@ -1,8 +1,9 @@
-package com.example.xplorecity.logIn;
+package com.example.xplorecity.eventCarpa;
 
 import android.content.Context;
 import android.widget.Toast;
 
+import com.example.xplorecity.logIn.ErrorResponse;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -10,35 +11,28 @@ import java.nio.charset.StandardCharsets;
 
 import cz.msebera.android.httpclient.Header;
 
-class AddUserResponseHandler extends AsyncHttpResponseHandler {
-
-
+class CurrentLayoutResponseHandler extends AsyncHttpResponseHandler {
     private Gson gson;
     private Context context;
-    private LogInActivity logInActivity;
+    private GameActivity gameActivity;
 
-    public AddUserResponseHandler(Gson gson, Context context, LogInActivity logInActivity) {
+    public CurrentLayoutResponseHandler(Gson gson, Context context, GameActivity gameActivity) {
         this.context = context;
         this.gson = gson;
-        this.logInActivity = logInActivity;
+        this.gameActivity = gameActivity;
     }
 
     @Override
     public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-        String a = new String(responseBody, StandardCharsets.UTF_8);
         if (statusCode == 200){
-            AddUserResponse addUserResponse = this.gson.fromJson(new String(responseBody, StandardCharsets.UTF_8), AddUserResponse.class);
-            //-----------------------------------------
+            CurrentLayoutResponse currentLayoutResponse = this.gson.fromJson(new String(responseBody, StandardCharsets.UTF_8), CurrentLayoutResponse.class);
 
-            String result = gson.toJson(addUserResponse);
-            if (addUserResponse.getErr().equals("false")){
-                logInActivity.startMainScreenActivity();
-            } else {
-                Toast.makeText(this.context, "IMEI o username repetidos", Toast.LENGTH_LONG).show();
-            }
+            String result = gson.toJson(currentLayoutResponse);
+            Toast.makeText(this.context, result, Toast.LENGTH_LONG).show();
+
+            gameActivity.setCurrentLayout(currentLayoutResponse.getMsg());
 
         }
-
     }
 
     @Override

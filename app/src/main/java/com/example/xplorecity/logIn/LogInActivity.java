@@ -1,9 +1,5 @@
 package com.example.xplorecity.logIn;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,9 +10,12 @@ import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.example.xplorecity.R;
 import com.example.xplorecity.mainScreen.MainScreenActivity;
@@ -29,7 +28,7 @@ import cz.msebera.android.httpclient.entity.StringEntity;
 
 public class LogInActivity extends AppCompatActivity {
 
-    private String imei, email, nickName;
+    private String email, username, imei;
     private EditText emailText, nickNameText;
     private TelephonyManager telephonyManager;
 
@@ -40,44 +39,18 @@ public class LogInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        // temporal para poder probar mas cosas mientras esto no funciona
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_log_in);
 
-        Intent intent = new Intent(this, MainScreenActivity.class);
-        this.startActivity(intent);
-
-        //Lo primero que hacemos es coger el imei y hacer la petición porque
-        //si ya tenemos el imei saltamos al MainActivity
+        gson = new Gson();
         telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         if(isPermissionGranted()){
             //do your specific task after read phone state
             imei = telephonyManager.getImei();
         }
 
-        //Creamos el json
-        gson = new Gson();
-        ImeiRequest imeiRequest = new ImeiRequest(imei);
-        String requestJson = gson.toJson(imeiRequest);
-
-        //Mandamos la peticion
-        AsyncHttpClient client = new AsyncHttpClient();
-        try {
-            client.post(
-                    this,
-                    "http://92.222.89.84/xplore/getLevel.php?",
-                    new StringEntity(requestJson),
-                    "application/json",
-                    new ImeiResponseHandler(gson, this, this)
-            );
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_log_in);
-
         email = "";
-        nickName = "";
+        username = "";
 
         emailText = findViewById(R.id.email);
         nickNameText = findViewById(R.id.nickName);
@@ -93,20 +66,19 @@ public class LogInActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Por favor, introduzca la información requerida", Toast.LENGTH_SHORT).show();
             } else {
 
-                nickName = nickNameText.getText().toString();
+                username = nickNameText.getText().toString();
                 email = emailText.getText().toString();
 
-                addUser(email, nickName);
+                addUser(email, username, imei);
 
             }
         }
     }
 
-    private void addUser(String email, String nickName) {
+    private void addUser(String email, String username, String imei) {
 
         //Creamos el json
-        gson = new Gson();
-        AddUserRequest addUserRequest = new AddUserRequest(imei, email, nickName);
+        AddUserRequest addUserRequest = new AddUserRequest(imei, email, username);
         String requestJson = gson.toJson(addUserRequest);
 
         //Mandamos la peticion
@@ -126,14 +98,15 @@ public class LogInActivity extends AppCompatActivity {
 
     }
 
-    public void startMainActivity(){
+    public void startMainScreenActivity(){
+        finish();
         Intent intent = new Intent(this, MainScreenActivity.class);
         startActivity(intent);
     }
 
     public  boolean isPermissionGranted() {
         if (Build.VERSION.SDK_INT >= 23) {
-            if (checkSelfPermission(android.Manifest.permission.READ_PHONE_STATE)
+            if (checkSelfPermission(Manifest.permission.READ_PHONE_STATE)
                     == PackageManager.PERMISSION_GRANTED) {
                 return true;
             } else {

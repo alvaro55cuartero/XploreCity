@@ -1,8 +1,12 @@
-package com.example.xplorecity.logIn;
+package com.example.xplorecity.mainScreen;
 
 import android.content.Context;
+import android.os.Build;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+
+import com.example.xplorecity.logIn.ErrorResponse;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -10,37 +14,33 @@ import java.nio.charset.StandardCharsets;
 
 import cz.msebera.android.httpclient.Header;
 
-class AddUserResponseHandler extends AsyncHttpResponseHandler {
-
+class ImeiResponseHandler extends AsyncHttpResponseHandler {
 
     private Gson gson;
     private Context context;
-    private LogInActivity logInActivity;
+    private MainScreenActivity mainScreenActivity;
 
-    public AddUserResponseHandler(Gson gson, Context context, LogInActivity logInActivity) {
+    public ImeiResponseHandler(Gson gson, Context context, MainScreenActivity mainScreenActivity) {
         this.context = context;
         this.gson = gson;
-        this.logInActivity = logInActivity;
+        this.mainScreenActivity = mainScreenActivity;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-        String a = new String(responseBody, StandardCharsets.UTF_8);
         if (statusCode == 200){
-            AddUserResponse addUserResponse = this.gson.fromJson(new String(responseBody, StandardCharsets.UTF_8), AddUserResponse.class);
-            //-----------------------------------------
+            ImeiResponse imeiResponse = this.gson.fromJson(new String(responseBody, StandardCharsets.UTF_8), ImeiResponse.class);
 
-            String result = gson.toJson(addUserResponse);
-            if (addUserResponse.getErr().equals("false")){
-                logInActivity.startMainScreenActivity();
-            } else {
-                Toast.makeText(this.context, "IMEI o username repetidos", Toast.LENGTH_LONG).show();
-            }
+            String result = gson.toJson(imeiResponse);
+            Toast.makeText(this.context, result, Toast.LENGTH_LONG).show();
+
+            if(imeiResponse.getMsg()<0){mainScreenActivity.startLogInActivity();}
 
         }
-
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
         if (statusCode == 400){

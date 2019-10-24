@@ -1,54 +1,38 @@
-package com.example.xplorecity.logIn;
+package com.example.xplorecity.eventCarpa;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
-
-import com.example.xplorecity.mainScreen.MainScreenActivity;
+import com.example.xplorecity.logIn.ErrorResponse;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.ResponseHandlerInterface;
 
-import java.net.HttpURLConnection;
 import java.nio.charset.StandardCharsets;
 
 import cz.msebera.android.httpclient.Header;
 
-class ImeiResponseHandler extends AsyncHttpResponseHandler {
-
+class IncrementLayoutResponseHandler extends AsyncHttpResponseHandler {
     private Gson gson;
     private Context context;
-    private LogInActivity logInActivity;
+    private GameActivity gameActivity;
 
-    public ImeiResponseHandler(Gson gson, Context context, LogInActivity logInActivity) {
+    public IncrementLayoutResponseHandler(Gson gson, Context context, GameActivity gameActivity) {
         this.context = context;
         this.gson = gson;
-        this.logInActivity = logInActivity;
+        this.gameActivity = gameActivity;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
         if (statusCode == 200){
-            ImeiResponse imeiResponse = this.gson.fromJson(new String(responseBody, StandardCharsets.UTF_8), ImeiResponse.class);
-            //-----------------------------------------
+            IncrementLayoutResponse incrementLayoutResponse = this.gson.fromJson(new String(responseBody, StandardCharsets.UTF_8), IncrementLayoutResponse.class);
+            if (incrementLayoutResponse.getErr().equals("false")){
+                Toast.makeText(this.context, "Enhorabuena, ¡has incrementado un nivel!", Toast.LENGTH_LONG).show();
 
-            String result = gson.toJson(imeiResponse);
-            //Toast.makeText(this.context, result, Toast.LENGTH_LONG).show();
-
-            if (result.isEmpty()){
-                logInActivity.startMainActivity();
-                logInActivity.finish();
             }
-
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
         if (statusCode == 400){

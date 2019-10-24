@@ -1,6 +1,13 @@
 package com.example.xplorecity.eventCarpa;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -11,13 +18,20 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.example.xplorecity.R;
 import com.example.xplorecity.tools.Event;
+import com.google.gson.Gson;
+import com.loopj.android.http.AsyncHttpClient;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
 import java.util.Date;
+
+import cz.msebera.android.httpclient.entity.StringEntity;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -39,6 +53,12 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private int [] texOption2;
     private String [] texResp2;
 
+    private Gson gson;
+    private String imei;
+    private TelephonyManager telephonyManager;
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @SuppressLint("MissingPermission")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,6 +117,32 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         b.setOnClickListener(this);
 
         scrollView = (ScrollView) findViewById(R.id.mar);
+
+        telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        if(isPermissionGranted()){
+            //do your specific task after read phone state
+            imei = telephonyManager.getImei();
+        }
+        //Peticion del currentLayout
+        //Creamos el json
+        gson = new Gson();
+        CurrentLayoutRequest currentLayoutRequest = new CurrentLayoutRequest(imei);
+        String requestJson = gson.toJson(currentLayoutRequest);
+
+        //Mandamos la peticion
+        AsyncHttpClient client = new AsyncHttpClient();
+        try {
+            client.post(
+                    this,
+                    "http://92.222.89.84/xplore/getLevel.php",
+                    new StringEntity(requestJson),
+                    "application/json",
+                    new CurrentLayoutResponseHandler(gson, this, this)
+            );
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
 
         makeLayout(event.layouts[currentLayout]);
 
@@ -205,9 +251,73 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             if(currentLayout < 14 || checkDate("20/10/2019")) {
                 currentLayout++;
                 makeLayout(event.layouts[currentLayout]);
+
+                //Le decimos al servidor que hemos avanzado un Layout
+                gson = new Gson();
+                IncrementLayoutRequest incrementLayoutRequest = new IncrementLayoutRequest(imei);
+                String requestJson = gson.toJson(incrementLayoutRequest);
+
+                //Mandamos la peticion
+                AsyncHttpClient client = new AsyncHttpClient();
+                try {
+                    client.post(
+                            this,
+                            "http://92.222.89.84/xplore/incrementLevel.php",
+                            new StringEntity(requestJson),
+                            "application/json",
+                            new IncrementLayoutResponseHandler(gson, this, this)
+                    );
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         } else {
             this.finish();
         }
+    }
+
+    public  boolean isPermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(android.Manifest.permission.READ_PHONE_STATE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                return true;
+            } else {
+
+                Log.v("TAG","Permission is revoked");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, 2);
+                return false;
+            }
+        }
+        else { //permission is automatically granted on sdk<23 upon installation
+            return true;
+        }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+
+            case 2: {
+
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(getApplicationContext(), "Permission granted", Toast.LENGTH_SHORT).show();
+                    //do your specific task after read phone state granted
+                } else {
+                    Toast.makeText(getApplicationContext(), "Permission denied", Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
+    }
+
+    public void setCurrentLayout(int currentLayout){
+        this.currentLayout = currentLayout;
     }
 }

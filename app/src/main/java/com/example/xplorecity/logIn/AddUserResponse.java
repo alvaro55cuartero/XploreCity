@@ -2,13 +2,14 @@ package com.example.xplorecity.logIn;
 
 class AddUserResponse {
 
-    private String message;
+    private String err, msg;
 
-    public AddUserResponse(String message){
-        this.message = message;
+    public AddUserResponse(String err, String msg){
+        this.err = err;
+        this.msg = msg;
     }
 
-    public String getMessage(){
-        return message;
-    }
+    public String getErr(){ return  err; }
+
+    public String getMsg(){return msg;}
 }
