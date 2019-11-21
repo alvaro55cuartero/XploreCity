@@ -9,9 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.xplorecity.R;
 
-import static com.example.xplorecity.mainScreen.MainScreenActivity.events;
-import static com.example.xplorecity.mainScreen.MainScreenActivity.myEvents;
-
 public class EventCarpa extends AppCompatActivity implements View.OnClickListener {
 
     private int id = 0;
@@ -19,13 +16,7 @@ public class EventCarpa extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event_carpa);
-
-        Button b1 = findViewById(R.id.button1);
-        b1.setOnClickListener(this);
-        Button b2 = findViewById(R.id.button2);
-        b2.setOnClickListener(new PlayButtonListener(this));
-        Bundle bundle = getIntent().getExtras();
+        setContentView(R.layout.activity_event);
 
         //if(events.get(0).isInMyEvents()) {
         //    b1.setText(R.string.remove_from_my_list);
@@ -37,8 +28,8 @@ public class EventCarpa extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View view) {
 
+        /*
         if (!events.get(id).isInMyEvents()){
-            myEvents.add(events.get(id));
             events.get(id).setInMyEvents(true);
 
             Button b1 = findViewById(R.id.button1);
@@ -48,7 +39,6 @@ public class EventCarpa extends AppCompatActivity implements View.OnClickListene
             b2.setVisibility(View.VISIBLE);
 
         } else {
-            myEvents.remove(id);
             events.get(id).setInMyEvents(false);
 
             Button b1 = findViewById(R.id.button1);
@@ -56,6 +46,6 @@ public class EventCarpa extends AppCompatActivity implements View.OnClickListene
 
             Button b2 = findViewById(R.id.button2);
             b2.setVisibility(View.GONE);
-        }
+        }*/
     }
 }
