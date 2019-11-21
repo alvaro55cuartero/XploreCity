@@ -76,6 +76,8 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
 
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("Layouts", layouts);
+                bundle.putSerializable("EventInfo", eventInfo);
+
                 intent.putExtras(bundle);
                 this.startActivity(intent);
 
@@ -151,7 +153,7 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
                 if(statusCode == 200) {
                     Response r = gson.fromJson(new String(responseBody), Response.class);
 
-                    if(r.getErr().matches("fail")) {
+                    if(r.getErr().matches("false")) {
                         peticionIsUsed();
                     } else {
                         peticionNewUserEvent();
@@ -171,6 +173,8 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
 
     public void peticionIsUsed() {
         RequestParams params = new RequestParams();
+        params.put("imei", LoadingActivity.imei);
+        params.put("title", eventInfo.getTitle());
 
         AsyncHttpResponseHandler responseHandler = new AsyncHttpResponseHandler() {
             @Override

@@ -1,6 +1,8 @@
 package com.example.xplorecity.eventManager;
 
-public class EventInfo {
+import java.io.Serializable;
+
+public class EventInfo implements Serializable {
     private String title;
     private String img;
     private String texto;
