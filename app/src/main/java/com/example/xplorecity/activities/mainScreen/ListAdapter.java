@@ -9,12 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.xplorecity.R;
-import com.example.xplorecity.eventManager.Event;
 import com.example.xplorecity.eventManager.EventInfo;
-import com.example.xplorecity.eventManager.EventInfoList;
 import com.example.xplorecity.tools.FileIO;
-
-import java.util.List;
 
 public class ListAdapter extends BaseAdapter {
 
@@ -51,6 +47,15 @@ public class ListAdapter extends BaseAdapter {
 
         TextView name = viewout.findViewById(R.id.text);
         name.setText(eventList[i].getTitle());
+
+        TextView fecha = viewout.findViewById(R.id.textFecha);
+        fecha.setText("Fecha: " + eventList[i].getFecha());
+
+        TextView premio = viewout.findViewById(R.id.textPremio);
+        premio.setText("Premio: " + eventList[i].getPremio());
+
+        TextView personas = viewout.findViewById(R.id.textPersonas);
+        personas.setText("Personas: " + eventList[i].getPersonas());
 
         return viewout;
     }

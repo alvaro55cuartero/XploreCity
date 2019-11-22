@@ -29,6 +29,9 @@ import com.loopj.android.http.FileAsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -51,7 +54,7 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
 
         b = findViewById(R.id.button);
         b.setOnClickListener(this);
-        b.setText("Donwload");
+        b.setText("Not yet wait till " + eventInfo.getFecha());
 
         TextView text = findViewById(R.id.text);
         text.setText(eventInfo.getTexto());
@@ -59,7 +62,29 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
         ImageView img = findViewById(R.id.img);
         img.setImageBitmap(FileIO.loadIMG(this, "", eventInfo.getImg()));
 
-        peticionIsUserEvents();
+        checkDate();
+
+
+    }
+
+    public void checkDate(){
+
+        SimpleDateFormat parser = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date date = parser.parse(eventInfo.getFecha());
+            Date currentTime = Calendar.getInstance().getTime();
+            if(currentTime.after(date)) {
+                peticionIsUserEvents();
+                b.setText("Download");
+            }
+        } catch(Exception e) {
+
+        }
+    }
+
+    public void onResume() {
+        super.onResume();
+        peticionIsUsed();
 
     }
 

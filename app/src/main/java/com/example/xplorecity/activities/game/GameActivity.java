@@ -1,5 +1,7 @@
 package com.example.xplorecity.activities.game;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.xplorecity.R;
 import com.example.xplorecity.activities.loading.LoadingActivity;
+import com.example.xplorecity.activities.logIn.LogInActivity;
 import com.example.xplorecity.eventManager.EventInfo;
 import com.example.xplorecity.eventManager.Layout;
 import com.example.xplorecity.requests.Petition;
@@ -34,6 +37,7 @@ public class GameActivity extends AppCompatActivity implements android.widget.Ad
     private Layout currentLayout;
     private TextView text;
     private TextView text2;
+    private ImageView img;
 
     private Button b;
     private Spinner spinner;
@@ -45,6 +49,7 @@ public class GameActivity extends AppCompatActivity implements android.widget.Ad
         eventInfo = (EventInfo)getIntent().getExtras().get("EventInfo");
         spinner = findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(this);
+        img = findViewById(R.id.img);
         text = findViewById(R.id.text);
         text2 = findViewById(R.id.text2);
         b = findViewById(R.id.button);
@@ -53,7 +58,7 @@ public class GameActivity extends AppCompatActivity implements android.widget.Ad
     }
 
     public void onClick(View view) {
-        if(currentLayoutCount > layouts.length) {
+        if(currentLayoutCount < layouts.length - 1) {
             currentLayoutCount++;
             peticionIncrementLevel();
         } else {
@@ -68,8 +73,8 @@ public class GameActivity extends AppCompatActivity implements android.widget.Ad
 
         b.setVisibility(View.INVISIBLE);
 
-        ImageView img = findViewById(R.id.img);
-        img.setImageBitmap(FileIO.loadIMG(this,"",currentLayout.getImg()));
+        Bitmap b = FileIO.loadIMG(this,"",currentLayout.getImg());
+        img.setImageBitmap(b);
 
         text.setText(currentLayout.getContexto());
 
@@ -103,7 +108,6 @@ public class GameActivity extends AppCompatActivity implements android.widget.Ad
         params.put("title", eventInfo.getTitle());
 
         AsyncHttpResponseHandler responseHandler = new AsyncHttpResponseHandler() {
-            @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if(statusCode == 200) {
                     Response r = gson.fromJson(new String(responseBody), Response.class);
@@ -114,7 +118,6 @@ public class GameActivity extends AppCompatActivity implements android.widget.Ad
                 }
             }
 
-            @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
 
             }
@@ -154,7 +157,8 @@ public class GameActivity extends AppCompatActivity implements android.widget.Ad
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if(statusCode ==200) {
-                    finish();
+
+                    login();
                 }
             }
 
@@ -164,6 +168,12 @@ public class GameActivity extends AppCompatActivity implements android.widget.Ad
         };
 
         Petition.petition(this, "http://92.222.89.84/xplore/setUsed.php", responseHandler, params);
+    }
+
+    public void login() {
+        Intent intent = new Intent(this, LogInActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 }

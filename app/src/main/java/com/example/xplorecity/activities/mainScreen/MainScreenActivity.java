@@ -96,7 +96,7 @@ public class MainScreenActivity extends AppCompatActivity implements View.OnClic
     public void fillList() {
         ListView listView = this.findViewById(R.id.list1);
         listView.setAdapter(new ListAdapter(eventInfoList));
-        listView.setOnItemClickListener(new ListListener(this, eventInfoList));
+        listView.setOnItemClickListener(new ListListener(this));
     }
 
     private void loadEvents() {
