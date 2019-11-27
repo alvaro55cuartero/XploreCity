@@ -97,6 +97,7 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
                 b.setText("WAIT DOWLOADING...");
 
             } else if (!wait) {
+                peticionSetDate();
                 Intent intent = new Intent(this, GameActivity.class);
 
                 Bundle bundle = new Bundle();
@@ -110,8 +111,32 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    public void peticionSetDate() {
+        RequestParams params = new RequestParams();
+        params.put("title", eventInfo.getTitle());
+        params.put("imei", LoadingActivity.imei);
+
+
+        AsyncHttpResponseHandler responseHandler = new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                if(statusCode == 400) {
+                    statusCode = 200;
+                }
+            }
+        };
+
+        Petition.petition(this, "http://92.222.89.84/xplore/setDate.php", responseHandler, params);
+    }
+
     public void peticionGetEventJson() {
         RequestParams params = new RequestParams();
+        params.put("imei", LoadingActivity.imei);
         params.put("title", eventInfo.getJson());
 
         AsyncHttpResponseHandler responseHandler = new AsyncHttpResponseHandler() {
@@ -145,6 +170,8 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
             FileIO.test(this, "");
             wait = false;
             b.setText("PLAY");
+        } else {
+            downloads();
         }
     }
 
@@ -157,14 +184,14 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onSuccess(int statusCode, Header[] headers, File file) {
                 postDowload(file, this.getRequestURI().toString());
+
             }
         };
 
-        for (Layout l: layouts) {
-            String text = "http://92.222.89.84/xplore/uploads/img/"+ eventInfo.getTitle() + "/" + l.getImg();
-            text = text.replace(" ", "%20");
-            Petition.petition(this, text, file, new RequestParams());
-        }
+        Layout l = layouts[count];
+        String text = "http://92.222.89.84/xplore/uploads/img/"+ eventInfo.getTitle() + "/" + l.getImg();
+        text = text.replace(" ", "%20");
+        Petition.petition(this, text, file, new RequestParams());
     }
 
     public void peticionIsUserEvents() {

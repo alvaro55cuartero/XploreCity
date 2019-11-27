@@ -35,14 +35,12 @@ public class MainScreenActivity extends AppCompatActivity implements View.OnClic
     public static EventInfo[] eventInfoList;
     private int count = 0;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         loadEventsInfoFile();
     }
 
-    @Override
     public void onClick(View view) {
         Intent i = new Intent(this, EventCarpa.class);
         startActivity(i);
@@ -90,6 +88,8 @@ public class MainScreenActivity extends AppCompatActivity implements View.OnClic
         count++;
         if (count >= eventInfoList.length) {
             fillList();
+        } else {
+            downloads();
         }
     }
 
@@ -115,10 +115,10 @@ public class MainScreenActivity extends AppCompatActivity implements View.OnClic
             }
         };
 
-        for(EventInfo e : eventInfoList) {
-            String text = "http://92.222.89.84/xplore/uploads/img/" + e.getTitle() + "/" + e.getImg();
-            text = text.replace(" ", "%20");
-            Petition.petition(this, text, file, new RequestParams());
-        }
+
+        EventInfo e = eventInfoList[count];
+        String text = "http://92.222.89.84/xplore/uploads/img/" + e.getTitle() + "/" + e.getImg();
+        text = text.replace(" ", "%20");
+        Petition.petition(this, text, file, new RequestParams());
     }
 }

@@ -1,4 +1,4 @@
-package com.example.xplorecity.activities.logIn;
+package com.example.xplorecity.activities.signIn;
 
 import android.content.Context;
 import android.content.Intent;
@@ -22,7 +22,7 @@ import java.nio.charset.StandardCharsets;
 
 import cz.msebera.android.httpclient.Header;
 
-public class LogInActivity extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity implements View.OnClickListener {
 
     private String email = "";
     private String username = "";
@@ -35,12 +35,12 @@ public class LogInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_log_in);
+        setContentView(R.layout.activity_sign_in);
 
         emailText = findViewById(R.id.email);
         nickNameText = findViewById(R.id.nickName);
 
-        findViewById(R.id.boton).setOnClickListener(new AceptarButtonListener());
+        findViewById(R.id.boton).setOnClickListener(this);
     }
 
 
@@ -68,7 +68,7 @@ public class LogInActivity extends AppCompatActivity {
             }
         };
 
-        Petition.petition(context,"http://92.222.89.84/xplore/addUser.php",responseHandler, params);
+        Petition.petition(context,"http://92.222.89.84/xplore/login.php",responseHandler, params);
 
     }
 
@@ -78,18 +78,17 @@ public class LogInActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private class AceptarButtonListener implements View.OnClickListener {
 
-        public void onClick(View v) {
-            if (emailText.getText().toString().isEmpty() || nickNameText.getText().toString().isEmpty()){
-                Toast.makeText(getApplicationContext(), "Por favor, introduzca la información requerida", Toast.LENGTH_SHORT).show();
-            } else {
 
-                username = nickNameText.getText().toString();
-                email = emailText.getText().toString();
+    public void onClick(View v) {
+        if (emailText.getText().toString().isEmpty() || nickNameText.getText().toString().isEmpty()){
+            Toast.makeText(getApplicationContext(), "Por favor, introduzca la información requerida", Toast.LENGTH_SHORT).show();
+        } else {
 
-                addUser(getApplicationContext(), email, username, LoadingActivity.imei);
-            }
+            username = nickNameText.getText().toString();
+            email = emailText.getText().toString();
+
+            addUser(this, email, username, LoadingActivity.imei);
         }
     }
 }

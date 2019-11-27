@@ -16,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.example.xplorecity.R;
-import com.example.xplorecity.activities.logIn.LogInActivity;
 import com.example.xplorecity.activities.mainScreen.MainScreenActivity;
 import com.example.xplorecity.requests.Petition;
 import com.example.xplorecity.requests.Response;

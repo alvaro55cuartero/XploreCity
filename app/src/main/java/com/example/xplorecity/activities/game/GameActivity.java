@@ -8,7 +8,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ResourceCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -16,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.xplorecity.R;
 import com.example.xplorecity.activities.loading.LoadingActivity;
-import com.example.xplorecity.activities.logIn.LogInActivity;
+import com.example.xplorecity.activities.signIn.SignInActivity;
 import com.example.xplorecity.eventManager.EventInfo;
 import com.example.xplorecity.eventManager.Layout;
 import com.example.xplorecity.requests.Petition;
@@ -39,6 +38,8 @@ public class GameActivity extends AppCompatActivity implements android.widget.Ad
     private TextView text2;
     private ImageView img;
 
+    private boolean first = true;
+
     private Button b;
     private Spinner spinner;
 
@@ -58,6 +59,8 @@ public class GameActivity extends AppCompatActivity implements android.widget.Ad
     }
 
     public void onClick(View view) {
+        FileIO.test(this, "");
+        first = true;
         if(currentLayoutCount < layouts.length - 1) {
             currentLayoutCount++;
             peticionIncrementLevel();
@@ -66,7 +69,6 @@ public class GameActivity extends AppCompatActivity implements android.widget.Ad
 
         }
     }
-
 
     public void makeLayout() {
         currentLayout = layouts[currentLayoutCount];
@@ -82,25 +84,24 @@ public class GameActivity extends AppCompatActivity implements android.widget.Ad
         spinner.setAdapter(adapter);
     }
 
-    @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String selected = adapterView.getItemAtPosition(i).toString();
 
         if(selected.matches(currentLayout.getRespuesta())) {
             b.setVisibility(View.VISIBLE);
+        } else if (!first){
+            peticionAddTime();
+        }else {
+            first = false;
         }
 
         String a  =currentLayout.getTexts()[i];
         text2.setText(a);
-
-
     }
 
-    @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
-
 
     public void peticionGetLevel() {
         RequestParams params = new RequestParams();
@@ -158,7 +159,7 @@ public class GameActivity extends AppCompatActivity implements android.widget.Ad
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if(statusCode ==200) {
 
-                    login();
+                    peticionSetDatef();
                 }
             }
 
@@ -170,10 +171,78 @@ public class GameActivity extends AppCompatActivity implements android.widget.Ad
         Petition.petition(this, "http://92.222.89.84/xplore/setUsed.php", responseHandler, params);
     }
 
+    public void peticionSetDatef() {
+        RequestParams params = new RequestParams();
+        params.put("title", eventInfo.getTitle());
+        params.put("imei", LoadingActivity.imei);
+
+
+        AsyncHttpResponseHandler responseHandler = new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                if(statusCode == 200) {
+                    peticionIsSinged();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+            }
+        };
+
+        Petition.petition(this, "http://92.222.89.84/xplore/setDatef.php", responseHandler, params);
+    }
+
     public void login() {
-        Intent intent = new Intent(this, LogInActivity.class);
+        Intent intent = new Intent(this, SignInActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void peticionAddTime() {
+        RequestParams params = new RequestParams();
+        params.put("imei", LoadingActivity.imei);
+        params.put("title", eventInfo.getTitle());
+        params.put("value", 10);
+
+        AsyncHttpResponseHandler responseHandler = new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+            }
+        };
+
+        Petition.petition(this, "http://92.222.89.84/xplore/addTime.php", responseHandler, params);
+    }
+
+    public void peticionIsSinged() {
+        RequestParams params = new RequestParams();
+        params.put("imei", LoadingActivity.imei);
+
+        AsyncHttpResponseHandler responseHandler = new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                if(statusCode == 200) {
+                    Response r = gson.fromJson(new String(responseBody), Response.class);
+                    if(r.getMsg().matches("fail")) {
+                        login();
+                    } else {
+                        finish();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+            }
+        };
+
+        Petition.petition(this, "http://92.222.89.84/xplore/isSigned.php", responseHandler, params);
     }
 
 }

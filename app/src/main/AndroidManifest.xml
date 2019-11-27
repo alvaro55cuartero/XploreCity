@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.logIn.LogInActivity"/>
+        <activity android:name=".activities.signIn.SignInActivity"/>
         <activity android:name=".eventCarpa.EventCarpa" />
         <activity android:name=".activities.event.EventActivity"/>
         <activity android:name=".activities.mainScreen.MainScreenActivity"/>

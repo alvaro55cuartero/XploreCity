@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:padding="20dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    tools:context=".activities.logIn.LogInActivity">
+    tools:context=".activities.signIn.SignInActivity">
 
     <View
         android:id="@+id/view4"
