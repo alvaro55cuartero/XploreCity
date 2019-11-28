@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/event"
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -19,18 +21,22 @@
             android:id="@+id/img"
             android:layout_width="117dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="40dp"
-            android:textColor="@color/colorGrayD"
-            android:textSize="24sp">
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img"
+            app:layout_constraintTop_toTopOf="parent">
 
         </TextView>
 
@@ -38,21 +44,43 @@
             android:id="@+id/textPersonas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img"
+            app:layout_constraintTop_toBottomOf="@+id/text" />
 
         <TextView
             android:id="@+id/textFecha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TextView" />
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="TextView"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img"
+            app:layout_constraintTop_toBottomOf="@+id/textPersonas" />
 
         <TextView
             android:id="@+id/textPremio"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TextView" />
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/colorGrayA"
+            android:fadingEdge="horizontal"
+            android:foregroundGravity="fill_horizontal|center_horizontal"
+            android:gravity="center_horizontal"
+            android:text="TextView"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img"
+            app:layout_constraintTop_toBottomOf="@+id/textFecha" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

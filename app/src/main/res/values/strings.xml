@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">XploreCity</string>
+    <string name="app_name">BIENVENIDO</string>
     <string name="enter">Añadir a mi lista de eventos</string>
     <string name="play">Jugar</string>
     <string name="remove_from_my_list">Eliminar de mi lista</string>
@@ -201,7 +201,7 @@
 
     <string name="fallo">Has fallado, piénsalo bien.</string>
     <string name="correcto">Genial, sigue así.</string>
-    <string name="LogIn">Introduce tus datos</string>
+    <string name="LogIn">PARA PODER OPTAR AL PREMIO INTRODUZCA SUS DATOS</string>
 
 
 </resources>
