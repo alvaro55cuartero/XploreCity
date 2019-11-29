@@ -25,12 +25,12 @@ public class FileIO {
             fileOutputStream = new FileOutputStream(file);
             if(bitmapImage.compress(Bitmap.CompressFormat.JPEG,100, fileOutputStream))
             {
-                Toast saved = Toast.makeText(context, "Image saved.", Toast.LENGTH_SHORT);
-                saved.show();
+                //Toast saved = Toast.makeText(context, "Image saved.", Toast.LENGTH_SHORT);
+                //saved.show();
             }
             else{
-                Toast unsaved = Toast.makeText(context, "Image not save.", Toast.LENGTH_SHORT);
-                unsaved.show();
+                //Toast unsaved = Toast.makeText(context, "Image not save.", Toast.LENGTH_SHORT);
+                //unsaved.show();
             }
         } catch (Exception e) {
             e.printStackTrace();
